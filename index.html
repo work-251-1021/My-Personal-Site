@@ -25,11 +25,34 @@
   <div class="cursor-jelly" id="cursor-jelly"></div>
   <div class="cursor-dot" id="cursor-dot"></div>
 
-  <!-- LIQUID NAVIGATION -->
+  <!-- NAVIGATION BAR -->
   <nav>
-    <div class="logo-box">
-      <a class="logo" href="#">Personal Page</a>
+    <!-- ۱. دکمه تم (سمت چپ) -->
+    <div class="theme-toggle-container">
+      <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle theme">
+      <label for="theme-toggle" class="theme-toggle-label">
+        <div class="toggle-thumb">
+          <div class="crater crater-1"></div>
+          <div class="crater crater-2"></div>
+          <div class="crater crater-3"></div>
+        </div>
+        <div class="clouds cloud-bg"></div>
+        <div class="clouds cloud-fg"></div>
+        <div class="star star-1">✦</div>
+        <div class="star star-2">★</div>
+        <div class="star star-3">✦</div>
+        <div class="star star-4">★</div>
+        <div class="crater-aura crater-aura-1"></div>
+        <div class="crater-aura crater-aura-2"></div>
+      </label>
     </div>
+
+    <!-- ۲. لوگو / باکس عنوان -->
+    <div class="logo-box">
+      <a href="index.html" class="logo">Personal Page</a>
+    </div>
+
+    <!-- ۳. منوها (سمت راست) -->
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
