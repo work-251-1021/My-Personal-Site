@@ -80,16 +80,44 @@ function initJellyCursor() {
   const dot = document.getElementById('cursor-dot');
   if (!jelly || !dot) return;
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let jellyX = mouseX;
-  let jellyY = mouseY;
+  let mouseX = -100;
+  let mouseY = -100;
+  let jellyX = -100;
+  let jellyY = -100;
   let isMouseDown = false;
+  let isVisible = false;
+
+  // مخفی بودن اولیه تا اولین حرکت ماوس
+  jelly.style.opacity = '0';
+  dot.style.opacity = '0';
+  jelly.style.transition = 'opacity 0.2s ease';
+  dot.style.transition = 'opacity 0.2s ease';
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+
+    if (!isVisible) {
+      isVisible = true;
+      jelly.style.opacity = '1';
+      dot.style.opacity = '1';
+      jellyX = mouseX;
+      jellyY = mouseY;
+    }
+
     dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+  });
+
+  document.addEventListener('mouseleave', () => {
+    isVisible = false;
+    jelly.style.opacity = '0';
+    dot.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    isVisible = true;
+    jelly.style.opacity = '1';
+    dot.style.opacity = '1';
   });
 
   window.addEventListener('mousedown', () => {
