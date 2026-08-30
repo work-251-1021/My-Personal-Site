@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Amir Rezaei</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Project Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Projects Page & Glassmorphism Card Styles -->
+  <style>
+    /* Mobile Glass Overlay */
+    #mobile-glass-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999999;
+      background: radial-gradient(circle at 50% 30%, #0d1b2a 0%, #030712 100%);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .liquid-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.6;
+      animation: floatOrb 8s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 250px;
+      height: 250px;
+      background: linear-gradient(135deg, #00d2ff, #0072ff);
+      top: 15%;
+      left: 10%;
+    }
+    .orb-2 {
+      width: 220px;
+      height: 220px;
+      background: linear-gradient(135deg, #38ef7d, #11998e);
+      bottom: 20%;
+      right: 10%;
+      animation-delay: -4s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(25px, 35px) scale(1.15); }
+    }
+
+    .mobile-glass-card {
+      position: relative;
+      z-index: 10;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 1px solid rgba(0, 210, 255, 0.4);
+      border-radius: 28px;
+      padding: 40px 28px;
+      text-align: center;
+      max-width: 380px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .glass-icon-wrapper {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(0, 114, 255, 0.2));
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(0, 114, 255, 0.35);
+    }
+
+    .glass-icon-wrapper svg {
+      width: 38px;
+      height: 38px;
+      stroke: #38bdf8;
+    }
+
+    .mobile-glass-card h2 {
+      color: #ffffff;
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+    }
+
+    .mobile-glass-card h2 span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .mobile-glass-card p {
+      color: #94a3b8;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+    }
+
+    .glass-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #38bdf8;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #38bdf8;
+    }
+
+    @media (max-width: 1024px) {
+      #mobile-glass-overlay { display: flex !important; }
+      body > *:not(#mobile-glass-overlay) { display: none !important; }
+    }
+
+    /* Projects Page Layout */
+    .projects-container {
+      max-width: 1200px;
+      margin: 120px auto 60px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .projects-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .projects-header h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .projects-header h1 span {
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .projects-header p {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    /* Individual Glass Repository Card */
+    .repo-card {
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .repo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+
+    .repo-card:hover::before {
+      opacity: 1;
+    }
+
+    .repo-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .repo-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #38bdf8;
+    }
+
+    .repo-link-arrow {
+      color: #64748b;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .repo-card:hover .repo-link-arrow {
+      color: #38bdf8;
+      transform: translate(2px, -2px);
+    }
+
+    .repo-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+    }
+
+    .repo-description {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .repo-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .topic-tag {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: #cbd5e1;
+    }
+
+    .repo-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .repo-language {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #38bdf8;
+    }
+
+    .repo-stats {
+      display: flex;
+      gap: 12px;
+    }
+
+    .repo-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Skeleton Loading State */
+    .skeleton-card {
+      min-height: 230px;
+      background: rgba(15, 23, 42, 0.3);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+  </style>
+
+  <!-- Project Script -->
+  <script src="script.js" defer></script>
+</head>
+<body data-page="projects">
+
+  <!-- Mobile Glass Block Screen -->
+  <div id="mobile-glass-overlay">
+    <div class="liquid-orb orb-1"></div>
+    <div class="liquid-orb orb-2"></div>
+    <div class="mobile-glass-card">
+      <div class="glass-icon-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+      </div>
+      <h2>Desktop View <span>Only</span></h2>
+      <p>This portfolio is crafted with high-performance animations designed exclusively for larger screens. Please switch to a desktop or laptop for the full experience.</p>
+      <div class="glass-badge">
+        <span class="badge-dot"></span>
+        Best viewed on PC
+      </div>
+    </div>
+  </div>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="cursor-jelly" id="cursor-jelly"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="theme-toggle-container">
+      <input type="checkbox" id="theme-toggle-input" class="theme-toggle-input" aria-label="Toggle theme">
+      <label for="theme-toggle-input" class="theme-toggle-label">
+        <span class="crater-aura crater-aura-1"></span>
+        <span class="crater-aura crater-aura-2"></span>
+        <span class="toggle-thumb">
+          <span class="crater crater-1"></span>
+          <span class="crater crater-2"></span>
+          <span class="crater crater-3"></span>
+        </span>
+        <span class="clouds cloud-bg"></span>
+        <span class="clouds cloud-fg"></span>
+        <span class="star star-1">✦</span>
+        <span class="star star-2">★</span>
+        <span class="star star-3">✦</span>
+        <span class="star star-4">★</span>
+      </label>
+    </div>
+
+    <div class="logo-box">
+      <a class="logo" href="index.html">Personal Page</a>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="projects-container">
+    <div class="projects-header">
+      <h1>Engineered <span>Repositories</span></h1>
+      <p>Automated real-time showcase fetched directly from my GitHub profile.</p>
+    </div>
+
+    <!-- Repository Cards Container -->
+    <div class="projects-grid" id="github-repos-container">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="enhanced-footer">
+    <div class="footer-contact-items">
+      <a href="mailto:Work.251.1021@gmail.com" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Work.251.1021@gmail.com</span>
+      </a>
+      <a href="tel:+989186230799" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+98 918 623 0799</span>
+      </a>
+      <div class="contact-item" style="cursor: default;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Available: Sat – Thu (09:00 - 18:00)</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/work-251-1021" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <a href="https://x.com/work_251_1021?s=11" target="_blank" rel="noopener" aria-label="X">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
+      </a>
+      <a href="https://t.me/Work_251_1021" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.91 3.79 20.3 20.84c-.25 1.21-.98 1.5-1.94.94l-5.39-3.97-2.59 2.5c-.29.29-.53.53-1.08.53l.39-5.47 9.93-8.97c.43-.39-.1-.6-.66-.22L6.81 13.8l-5.34-1.67c-1.16-.36-1.18-1.16.24-1.71L22.42 2.1c.97-.36 1.81.22 1.49 1.69z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- GitHub Public API Integration Script -->
+  <script>
+    const GITHUB_USERNAME = 'work-251-1021';
+
+    // Programming languages theme colors
+    const langColors = {
+      'Python': '#3572A5',
+      'C': '#555555',
+      'C++': '#f34b7d',
+      'Shell': '#89e051',
+      'Bash': '#89e051',
+      'JavaScript': '#f1e05a',
+      'HTML': '#e34c26',
+      'CSS': '#563d7c',
+      'Rust': '#dea584',
+      'Go': '#00ADD8'
+    };
+
+    async function fetchGitHubProjects() {
+      const container = document.getElementById('github-repos-container');
+      
+      try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=12`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch repositories from GitHub');
+        }
+
+        const repos = await response.json();
+        
+        // Filter out forks to display only original repositories
+        const myRepos = repos.filter(repo => !repo.fork);
+
+        if (myRepos.length === 0) {
+          container.innerHTML = `<p style="color: #94a3b8; text-align: center; grid-column: 1/-1;">No public repositories found.</p>`;
+          return;
+        }
+
+        container.innerHTML = ''; // Clear skeleton loaders
+
+        myRepos.forEach(repo => {
+          const card = document.createElement('a');
+          card.className = 'repo-card';
+          card.href = repo.html_url;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+
+          const language = repo.language || 'Code';
+          const color = langColors[language] || '#38bdf8';
+          const description = repo.description || 'No description provided for this repository.';
+          
+          // Generate topics / tags HTML
+          const topicsHtml = (repo.topics && repo.topics.length > 0) 
+            ? repo.topics.slice(0, 3).map(t => `<span class="topic-tag">${t}</span>`).join('')
+            : '';
+
+          card.innerHTML = `
+            <div>
+              <div class="repo-top">
+                <div class="repo-icon-box">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </div>
+                <div class="repo-link-arrow">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="repo-title">${repo.name}</div>
+              <div class="repo-description">${description}</div>
+              ${topicsHtml ? `<div class="repo-topics">${topicsHtml}</div>` : ''}
+            </div>
+
+            <div class="repo-footer">
+              <div class="repo-language">
+                <span class="lang-dot" style="background-color: ${color};"></span>
+                <span>${language}</span>
+              </div>
+              <div class="repo-stats">
+                <span class="repo-stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  ${repo.stargazers_count}
+                </span>
+                <span class="repo-stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+                  ${repo.forks_count}
+                </span>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch (error) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 20px;">
+            Failed to load repositories from GitHub. Please check connection.
+          </div>
+        `;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+  </script>
+</body>
+</html>
