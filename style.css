@@ -16,7 +16,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none;
 }
 
 body {
@@ -29,7 +28,6 @@ body {
   overflow-x: hidden;
   position: relative;
 }
-
 
 body[data-page="about"] {
   height: 100vh;
@@ -52,24 +50,23 @@ body[data-page="about"] {
 }
 
 /* Jelly Custom Cursor */
-.cursor-jelly {
+#cursor-jelly, .cursor-jelly {
   position: fixed;
   top: 0;
   left: 0;
   width: 32px;
   height: 32px;
-  background: rgba(59, 91, 255, 0.4);
+  background: rgba(59, 91, 255, 0.15);
   border: 1.5px solid rgba(59, 91, 255, 0.85);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
 
-.cursor-dot {
+#cursor-dot, .cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
@@ -106,6 +103,7 @@ nav {
 
 body[data-page="about"] nav {
   top: 20px; 
+}
 
 .logo-box {
   background: rgba(59, 91, 255, 0.1);
@@ -385,7 +383,6 @@ main.about-container {
 /* ==========================================================
    6. FOOTERS (SHARED & ENHANCED)
    ========================================================== */
-/* Basic Footer (Home) */
 footer {
   position: relative;
   z-index: 10;
@@ -404,7 +401,6 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
-/* Enhanced Footer (About) */
 footer.enhanced-footer {
   position: relative;
   z-index: 10;
@@ -474,7 +470,6 @@ footer.enhanced-footer {
    7. RESPONSIVE (MEDIA QUERIES)
    ========================================================== */
 @media (max-width: 992px) {
-  /* Global */
   nav {
     top: 20px;
     width: 90%;
@@ -482,7 +477,6 @@ footer.enhanced-footer {
     padding: 6px;
   }
   
-  /* Home */
   .hero {
     flex-direction: column-reverse;
     text-align: center;
@@ -492,7 +486,6 @@ footer.enhanced-footer {
   .hero-text { transform: translateX(0); }
   .blob-wrap { transform: translateX(0); width: 320px; height: 320px; }
 
-  /* About */
   body[data-page="about"] {
     overflow-y: auto;
   }
