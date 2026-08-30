@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Amir Rezaei</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS مشترک پروژه -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- JavaScript مشترک پروژه -->
+  <script src="script.js" defer></script>
+</head>
+<body data-page="about">
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="cursor-jelly" id="cursor-jelly"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- LIQUID NAVIGATION -->
+  <nav>
+    <div class="logo-box">
+      <a class="logo" href="index.html">Personal Page</a>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN ABOUT CONTENT -->
+  <main class="about-container">
+    <div class="about-header">
+      <h1>Exploring Systems Through <span>First Principles</span></h1>
+      <p>A rigorous mathematical foundation applied to backend development, operating system internals, and intelligent automation pipelines.</p>
+    </div>
+
+    <div class="grid-container">
+      <!-- Card 1: Mindset / Philosophy -->
+      <div class="glass-card col-8">
+        <div class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          Deep Curiosity &amp; Architecture
+        </div>
+        <div class="card-body">
+          <p>
+            I approach engineering problems by breaking them down to fundamental truths. Rather than simply using tools, I investigate how they interact with kernel subsystems, memory, and runtime environments. My passion lies in constructing scalable, low-latency workflows and dissecting operating systems with methodical precision.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Academic Background -->
+      <div class="glass-card col-4">
+        <div class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Education
+        </div>
+        <div class="card-body">
+          <p><strong>B.Sc. in Mathematics</strong></p>
+          <p style="margin-top: 4px; font-size: 13px;">Strong focus on analytical thinking, formal logic, discrete mathematics, and algorithmic problem-solving.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Technical Skills -->
+      <div class="glass-card col-8">
+        <div class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Core Technologies &amp; Toolkit
+        </div>
+        <div class="card-body">
+          <p>Specialized toolset for scripting, system automation, and low-level development:</p>
+          <div class="skills-wrapper">
+            <span class="skill-tag">Python (OOP, AsyncIO)</span>
+            <span class="skill-tag">Linux / Unix Internals</span>
+            <span class="skill-tag">Bash Scripting</span>
+            <span class="skill-tag">C Programming</span>
+            <span class="skill-tag">System Automation</span>
+            <span class="skill-tag">Git &amp; Workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Languages & Communication -->
+      <div class="glass-card col-4">
+        <div class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Language
+        </div>
+        <div class="card-body">
+          <p><strong>English</strong> — Level B1 (Intermediate)</p>
+          <p style="margin-top: 4px; font-size: 13px;">Proficient in technical documentation, architectural specifications, and collaborative development.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ENHANCED LIQUID GLASS FOOTER -->
+  <footer class="enhanced-footer">
+    <div class="footer-contact-items">
+      <a href="mailto:Work.251.1021@gmail.com" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Work.251.1021@gmail.com</span>
+      </a>
+      <a href="tel:+989186230799" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+98 918 623 0799</span>
+      </a>
+      <div class="contact-item" style="cursor: default;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Available: Sat – Thu (09:00 - 18:00)</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="https://github.com/work-251-1021" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.6 18 4.9 18 4.9c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <a href="https://x.com/work_251_1021?s=11" target="_blank" rel="noopener" aria-label="X">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
+      </a>
+      <a href="https://t.me/Work_251_1021" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.91 3.79 20.3 20.84c-.25 1.21-.98 1.5-1.94.94l-5.39-3.97-2.59 2.5c-.29.29-.53.53-1.08.53l.39-5.47 9.93-8.97c.43-.39-.1-.6-.66-.22L6.81 13.8l-5.34-1.67c-1.16-.36-1.18-1.16.24-1.71L22.42 2.1c.97-.36 1.81.22 1.49 1.69z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
