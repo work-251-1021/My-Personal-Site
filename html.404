@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | صفحه پیدا نشد</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #050a1f 0%, #0a1550 50%, #061030 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* ===== موج‌های پس‌زمینه (canvas مخصوص script.js) ===== */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== نشانگر ژله‌ای (مخصوص script.js) ===== */
+        #cursor-jelly, #cursor-dot {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 9999;
+            pointer-events: none;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #cursor-jelly {
+            width: 38px; height: 38px;
+            border: 2px solid rgba(96, 165, 250, 0.8);
+            background: rgba(59, 91, 255, 0.08);
+            backdrop-filter: blur(2px);
+        }
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background: #60a5fa;
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.9);
+        }
+        @media (hover: none) { #cursor-jelly, #cursor-dot { display: none; } }
+
+        /* ===== حباب‌های شیشه‌ای شناور ===== */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(120,170,255,.25), rgba(40,80,255,.05));
+            border: 1px solid rgba(140,180,255,.2);
+            backdrop-filter: blur(6px);
+            animation: floatUp linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(110vh); }
+            to   { transform: translateY(-20vh); }
+        }
+
+        /* ===== کارت شیشه‌ای اصلی ===== */
+        .glass-card {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 50px;
+            max-width: 560px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 20, 80,px 0 rgba(255, 255, 255, 0.2);
+            animation: cardIn 0.8s cubic-bezier(.2,.9,.3,1.2) both;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(50px) scale(.9); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ===== عدد ۴۰۴ با گرادیان آبی ===== */
+        .code-404 {
+            font-size: clamp(90px, 22vw, 160px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #60a5fa, #3b5bff 50%, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(59, 91, 255, 0.5));
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(59,91,255,.4)); }
+            50%      { filter: drop-shadow(0 0 45px rgba(59,91,255,.8)); }
+        }
+
+        .glass-card h1 {
+            font-size: 1.6rem;
+            margin: 18px 0 10px;
+        }
+        .glass-card p {
+            color: rgba(220, 232, 255, 0.75);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        /* ===== دکمه‌های شیشه‌ای ===== */
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            margin: 0 8px;
+            border-radius: 50px;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all .3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+ lieutenant        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b5bff, #2563eb);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(59, 91, 255, 0.45);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 91, 255, 0.65);
+        }
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.07);
+            color: #dbeafe;
+            backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 480px) {
+            .glass-card { padding: 45px 25px; margin: 0 15px; }
+            .btn { display: block; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body data-page="home">
+
+    <!-- Canvas موج‌ها — توسط script.js رسم می‌شود -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- نشانگر ژله‌ای — توسط script.js کنترل می‌شود -->
+    <div id="cursor-jelly"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- حباب‌های لیکویید شناور -->
+    <div class="bubble" style="width:80px;  height:80px;  left:10%; animation-duration:14s; animation-delay:0s;"></div>
+    <div class="bubble" style="width:40px;2 height:40px;  left:25%; animation-duration:11s; animation-delay:2s;"></div>
+    <div class="bubble" style="width:120px; height:120px; left:55%; animation-duration:18s; animation-delay:1s;"></div>
+    <div class="bubble" style="width:60px;  height:60px;  left:75%; animation-duration:13s; animation-delay:4s;"></div>
+    <div class="bubble" style="width:30px;  height:30px;  left:85%; animation-duration:9s;  animation-delay:6s;"></div>
+
+    <main class="glass-card">
+        <div class="code-404">404</div>
+        <h1>صفحه‌ای که دنبالش بودی پیدا نشد! 🌊</h1>
+        <p>
+            به نظر می‌رسد این صفحه در دریای وب گم شده است.
+            نگران نباش، می‌توانی به اقیانوس اصلی برگردی.
+        </p>
+        <a href="/" class="btn btn-primary">🏠 بازگشت به خانه</a>
+        <a href="javascript:history.back()" class="btn btn-ghost">↩ صفحه قبلی</a>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
