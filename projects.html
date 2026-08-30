@@ -26,6 +26,8 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      background-color: var(--bg-color);
+      color: var(--text-color);
     }
 
     /* Mobile Glass Overlay */
@@ -36,7 +38,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 9999999;
-      background: radial-gradient(circle at 50% 30%, #0d1b2a 0%, #030712 100%);
+      background: radial-gradient(circle at 50% 30%, #0b0f19 0%, #030712 100%);
       align-items: center;
       justify-content: center;
       padding: 24px;
@@ -49,20 +51,20 @@
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
-      opacity: 0.6;
+      opacity: 0.55;
       animation: floatOrb 8s ease-in-out infinite alternate;
     }
     .orb-1 {
       width: 250px;
       height: 250px;
-      background: linear-gradient(135deg, #00d2ff, #0072ff);
+      background: linear-gradient(135deg, var(--blue, #3b5bff), #8a2be2);
       top: 15%;
       left: 10%;
     }
     .orb-2 {
       width: 220px;
       height: 220px;
-      background: linear-gradient(135deg, #38ef7d, #11998e);
+      background: linear-gradient(135deg, #00d2ff, var(--blue-dark, #2e47d4));
       bottom: 20%;
       right: 10%;
       animation-delay: -4s;
@@ -76,11 +78,11 @@
     .mobile-glass-card {
       position: relative;
       z-index: 10;
-      background: rgba(15, 23, 42, 0.45);
+      background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(25px) saturate(180%);
       -webkit-backdrop-filter: blur(25px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-top: 1px solid rgba(0, 210, 255, 0.4);
+      border-top: 1px solid rgba(59, 91, 255, 0.5);
       border-radius: 28px;
       padding: 40px 28px;
       text-align: center;
@@ -92,19 +94,19 @@
       width: 75px;
       height: 75px;
       margin: 0 auto 20px;
-      background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(0, 114, 255, 0.2));
-      border: 1px solid rgba(0, 210, 255, 0.3);
+      background: rgba(59, 91, 255, 0.15);
+      border: 1px solid rgba(59, 91, 255, 0.35);
       border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 25px rgba(0, 114, 255, 0.35);
+      box-shadow: 0 0 25px rgba(59, 91, 255, 0.35);
     }
 
     .glass-icon-wrapper svg {
       width: 38px;
       height: 38px;
-      stroke: #38bdf8;
+      stroke: var(--blue, #3b5bff);
     }
 
     .mobile-glass-card h2 {
@@ -115,7 +117,7 @@
     }
 
     .mobile-glass-card h2 span {
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      background: linear-gradient(135deg, var(--blue, #3b5bff), #60a5fa);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -131,9 +133,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      color: #38bdf8;
+      background: rgba(59, 91, 255, 0.12);
+      border: 1px solid rgba(59, 91, 255, 0.3);
+      color: #93c5fd;
       padding: 8px 18px;
       border-radius: 50px;
       font-size: 0.8rem;
@@ -144,9 +146,9 @@
     .badge-dot {
       width: 6px;
       height: 6px;
-      background-color: #38bdf8;
+      background-color: var(--blue, #3b5bff);
       border-radius: 50%;
-      box-shadow: 0 0 8px #38bdf8;
+      box-shadow: 0 0 8px var(--blue, #3b5bff);
     }
 
     @media (max-width: 1024px) {
@@ -154,7 +156,7 @@
       body > *:not(#mobile-glass-overlay) { display: none !important; }
     }
 
-    /* Floating Back Button (No Nav) */
+    /* Floating Back Button */
     .top-action-bar {
       position: absolute;
       top: 30px;
@@ -166,25 +168,26 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 50px;
-      background: rgba(15, 23, 42, 0.6);
+      background: var(--card-bg, rgba(255, 255, 255, 0.6));
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #f1f5f9;
+      border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+      color: var(--text-color, #1e293b);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm, 0 4px 15px rgba(0, 0, 0, 0.05));
     }
 
     .back-home-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: rgba(56, 189, 248, 0.4);
-      color: #38bdf8;
+      background: var(--blue, #3b5bff);
+      border-color: var(--blue, #3b5bff);
+      color: #ffffff;
       transform: translateX(-4px);
+      box-shadow: 0 6px 20px rgba(59, 91, 255, 0.3);
     }
 
     .back-home-btn svg {
@@ -209,27 +212,29 @@
 
     .projects-header {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 48px;
     }
 
     .projects-header h1 {
       font-size: 2.6rem;
-      color: #fff;
+      color: var(--text-color, #0f172a);
       font-weight: 700;
       margin-bottom: 12px;
+      letter-spacing: -0.5px;
     }
 
     .projects-header h1 span {
-      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      background: linear-gradient(135deg, var(--blue, #3b5bff), #6366f1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .projects-header p {
-      color: #94a3b8;
+      color: var(--text-secondary, #64748b);
       font-size: 1.05rem;
       max-width: 600px;
       margin: 0 auto;
+      line-height: 1.6;
     }
 
     /* Projects Grid */
@@ -240,12 +245,12 @@
       margin-bottom: 20px;
     }
 
-    /* Glass Repository Card */
+    /* Glass Repository Card matched with system */
     .repo-card {
-      background: rgba(15, 23, 42, 0.55);
+      background: var(--card-bg, rgba(255, 255, 255, 0.7));
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
       border-radius: 20px;
       padding: 24px;
       display: flex;
@@ -255,6 +260,7 @@
       position: relative;
       overflow: hidden;
       text-decoration: none;
+      box-shadow: var(--shadow-sm, 0 4px 20px rgba(0, 0, 0, 0.04));
     }
 
     .repo-card::before {
@@ -264,15 +270,15 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), transparent);
+      background: linear-gradient(90deg, transparent, var(--blue, #3b5bff), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
     .repo-card:hover {
       transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.3);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
+      border-color: rgba(59, 91, 255, 0.35);
+      box-shadow: 0 15px 35px rgba(59, 91, 255, 0.12), 0 0 0 1px rgba(59, 91, 255, 0.15);
     }
 
     .repo-card:hover::before {
@@ -287,38 +293,38 @@
     }
 
     .repo-icon-box {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: rgba(59, 91, 255, 0.08);
+      border: 1px solid rgba(59, 91, 255, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #38bdf8;
+      color: var(--blue, #3b5bff);
     }
 
     .repo-link-arrow {
-      color: #64748b;
+      color: var(--text-secondary, #94a3b8);
       transition: color 0.2s, transform 0.2s;
     }
 
     .repo-card:hover .repo-link-arrow {
-      color: #38bdf8;
+      color: var(--blue, #3b5bff);
       transform: translate(2px, -2px);
     }
 
     .repo-title {
       font-size: 1.15rem;
       font-weight: 600;
-      color: #f1f5f9;
+      color: var(--text-color, #0f172a);
       margin-bottom: 8px;
     }
 
     .repo-description {
       font-size: 0.88rem;
-      color: #94a3b8;
-      line-height: 1.5;
+      color: var(--text-secondary, #64748b);
+      line-height: 1.55;
       margin-bottom: 18px;
       flex-grow: 1;
       display: -webkit-box;
@@ -337,33 +343,35 @@
     .topic-tag {
       font-size: 0.72rem;
       padding: 4px 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(59, 91, 255, 0.06);
+      border: 1px solid rgba(59, 91, 255, 0.15);
       border-radius: 6px;
-      color: #cbd5e1;
+      color: var(--text-color, #334155);
+      font-weight: 500;
     }
 
     .repo-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--border-color, rgba(0, 0, 0, 0.06));
       padding-top: 14px;
       font-size: 0.8rem;
-      color: #64748b;
+      color: var(--text-secondary, #64748b);
     }
 
     .repo-language {
       display: flex;
       align-items: center;
       gap: 6px;
+      font-weight: 500;
     }
 
     .lang-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: #38bdf8;
+      background-color: var(--blue, #3b5bff);
     }
 
     .repo-stats {
@@ -380,18 +388,18 @@
     /* Skeleton Loading State */
     .skeleton-card {
       min-height: 220px;
-      background: rgba(15, 23, 42, 0.3);
+      background: var(--card-bg, rgba(255, 255, 255, 0.4));
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color, rgba(0, 0, 0, 0.06));
       animation: pulse 1.5s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
     }
 
-    /* Footer adjustments */
+    /* Footer */
     footer.enhanced-footer {
       flex-shrink: 0;
       margin-top: auto;
@@ -456,7 +464,7 @@
     </div>
   </main>
 
-  <!-- Footer (Fixed at bottom naturally) -->
+  <!-- Footer -->
   <footer class="enhanced-footer">
     <div class="footer-contact-items">
       <a href="mailto:Work.251.1021@gmail.com" class="contact-item">
@@ -515,11 +523,11 @@
 
         const repos = await response.json();
         
-        // Filter out forked repositories and the main profile README repo if necessary
+        // Filter out forks and profile repository
         const myRepos = repos.filter(repo => !repo.fork && repo.name.toLowerCase() !== GITHUB_USERNAME.toLowerCase());
 
         if (myRepos.length === 0) {
-          container.innerHTML = `<p style="color: #94a3b8; text-align: center; grid-column: 1/-1;">No projects found at this time.</p>`;
+          container.innerHTML = `<p style="color: var(--text-secondary); text-align: center; grid-column: 1/-1;">No projects found at this time.</p>`;
           return;
         }
 
@@ -533,7 +541,7 @@
           card.rel = 'noopener noreferrer';
 
           const language = repo.language || 'Code';
-          const color = langColors[language] || '#38bdf8';
+          const color = langColors[language] || 'var(--blue)';
           const description = repo.description || 'Modern project crafted with modular architecture and clean code standards.';
           
           const topicsHtml = (repo.topics && repo.topics.length > 0) 
