@@ -1,6 +1,6 @@
  My First Website Template
 
-Welcome to this project! 👋
+Welcome to this project! 
 
 This website is a **simple template** created as my very first experience with web design. 
 
@@ -25,8 +25,8 @@ This website is a **simple template** created as my very first experience with w
 
 ---
 
-### 💡 Feedback
+###  Feedback
 
 Since this is my first project, any suggestions, feedback, or improvements are very welcome! 
 
-⭐ *Feel free to use it, learn from it, and improve it!*
+ *Feel free to use it, learn from it, and improve it!*
