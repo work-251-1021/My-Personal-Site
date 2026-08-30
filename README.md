@@ -6,7 +6,7 @@ This website is a **simple template** created as my very first experience with w
 
 ---
 
-### 📝 About This Project
+###  About This Project
 
 * **My First Try:** I am not a professional web designer or developer.
 * **AI-Assisted:** This project was made using several AI prompts.
@@ -15,7 +15,7 @@ This website is a **simple template** created as my very first experience with w
 
 ---
 
-### 🚀 How to Use
+###  How to Use
 
 1. **Clone or Download** the files to your computer.
 2. Open the project folder.
