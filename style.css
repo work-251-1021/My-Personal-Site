@@ -10,6 +10,26 @@
   --glass-border: rgba(255, 255, 255, 0.6);
   --text: #1d2130;
   --muted: #6b7280;
+  --bg-color: #fafbfc;
+  --theme-transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                      color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                      border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                      box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Variables (هم با کلاس dark-mode و هم با اتربیوت data-theme) */
+body.dark-mode,
+[data-theme="dark"] body,
+body[data-theme="dark"] {
+  --blue: #4d70ff;
+  --blue-dark: #3754e6;
+  --blue-liquid: rgba(77, 112, 255, 0.25);
+  --glass-bg: rgba(18, 22, 34, 0.7);
+  --glass-card: rgba(22, 27, 46, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text: #f0f3fa;
+  --muted: #9ba3b5;
+  --bg-color: #0b0f19;
 }
 
 *,
@@ -28,12 +48,13 @@ html, body {
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text);
-  background: #fafbfc;
+  background-color: var(--bg-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   position: relative;
+  transition: var(--theme-transition);
 }
 
 body[data-page="about"] {
@@ -54,6 +75,7 @@ body[data-page="about"] {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
+  transition: opacity 0.6s ease;
 }
 
 /* Jelly Custom Cursor */
@@ -87,15 +109,230 @@ body[data-page="about"] {
 }
 
 /* ==========================================================
-   3. NAVIGATION (SHARED)
+   3. DAY / NIGHT THEME TOGGLE SWITCH (INSIDE NAVBAR)
+   ========================================================== */
+.theme-toggle-container {
+  position: static;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.theme-toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.theme-toggle-label {
+  position: relative;
+  display: block;
+  width: 110px;
+  height: 48px;
+  background: linear-gradient(180deg, #4da4ff 0%, #89c5fd 100%);
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15),
+              inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sun / Moon Thumb Ball */
+.toggle-thumb {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(145deg, #ffd700, #ffae00);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
+              inset 0 -2px 3px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s cubic-bezier(0.68, -0.25, 0.265, 1.25),
+              background 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+}
+
+/* Moon Craters inside thumb */
+.crater {
+  position: absolute;
+  background: #757d8a;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s ease;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.crater-1 {
+  width: 10px;
+  height: 10px;
+  top: 14px;
+  left: 8px;
+}
+
+.crater-2 {
+  width: 7px;
+  height: 7px;
+  top: 6px;
+  right: 9px;
+}
+
+.crater-3 {
+  width: 5px;
+  height: 5px;
+  bottom: 6px;
+  right: 12px;
+}
+
+/* Day Mode Clouds */
+.clouds {
+  position: absolute;
+  border-radius: 50px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.cloud-bg {
+  bottom: -16px;
+  right: -10px;
+  width: 85px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 30px;
+  box-shadow: -15px -8px 0 3px rgba(255, 255, 255, 0.45);
+  z-index: 2;
+}
+
+.cloud-fg {
+  bottom: -20px;
+  right: -5px;
+  width: 75px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: -18px -10px 0 2px #ffffff;
+  z-index: 3;
+}
+
+/* Dark Mode Stars */
+.star {
+  position: absolute;
+  color: #ffffff;
+  font-size: 8px;
+  opacity: 0;
+  transform: scale(0) rotate(0deg);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  user-select: none;
+}
+
+.star-1 {
+  top: 7px;
+  left: 16px;
+  font-size: 10px;
+  transition-delay: 0.1s;
+}
+
+.star-2 {
+  top: 24px;
+  left: 32px;
+  font-size: 8px;
+  transition-delay: 0.15s;
+}
+
+.star-3 {
+  top: 11px;
+  left: 46px;
+  font-size: 6px;
+  transition-delay: 0.2s;
+}
+
+.star-4 {
+  top: 28px;
+  left: 18px;
+  font-size: 7px;
+  transition-delay: 0.25s;
+}
+
+/* Dark Mode Aura Background Circles */
+.crater-aura {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.crater-aura-1 {
+  width: 62px;
+  height: 62px;
+  top: -9px;
+  right: -8px;
+}
+
+.crater-aura-2 {
+  width: 86px;
+  height: 86px;
+  top: -21px;
+  right: -20px;
+}
+
+/* Active Dark Mode Toggle State */
+.theme-toggle-input:checked + .theme-toggle-label {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4),
+              inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .toggle-thumb {
+  transform: translateX(62px);
+  background: linear-gradient(145deg, #a0aab8, #8892a0);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2),
+              inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .crater {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .clouds {
+  transform: translateY(35px);
+  opacity: 0;
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .star {
+  opacity: 0.9;
+  transform: scale(1) rotate(45deg);
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .crater-aura {
+  opacity: 1;
+}
+
+/* ==========================================================
+   4. NAVIGATION (SHARED)
    ========================================================== */
 nav {
   position: fixed;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 1000;
   display: flex;
+  direction: ltr;
   align-items: center;
   gap: 20px;
   padding: 8px 12px;
@@ -104,12 +341,13 @@ nav {
   -webkit-backdrop-filter: blur(15px) saturate(180%);
   border-radius: 50px;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05),
               inset 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: var(--theme-transition);
 }
 
 body[data-page="about"] nav {
-  top: 20px; 
+  top: 20px;
 }
 
 .logo-box {
@@ -121,6 +359,7 @@ body[data-page="about"] nav {
   border: 1px solid rgba(59, 91, 255, 0.2);
   display: flex;
   align-items: center;
+  transition: var(--theme-transition);
 }
 
 .logo {
@@ -129,6 +368,7 @@ body[data-page="about"] nav {
   color: var(--text);
   text-decoration: none;
   letter-spacing: -0.2px;
+  transition: var(--theme-transition);
 }
 
 nav ul {
@@ -144,7 +384,8 @@ nav ul a {
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 30px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.6s ease;
   display: block;
 }
 
@@ -160,7 +401,7 @@ nav ul a.active {
 }
 
 /* ==========================================================
-   4. INDEX (HOME) PAGE SPECIFIC
+   5. INDEX (HOME) PAGE SPECIFIC
    ========================================================== */
 .hero {
   position: relative;
@@ -186,9 +427,13 @@ nav ul a.active {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -1px;
+  transition: color 0.6s ease;
 }
 
-.hero-text .name { color: var(--blue); }
+.hero-text .name { 
+  color: var(--blue); 
+  transition: color 0.6s ease;
+}
 
 .hero-text .role {
   font-size: 40px;
@@ -196,6 +441,7 @@ nav ul a.active {
   color: var(--blue);
   display: block;
   margin-top: 4px;
+  transition: color 0.6s ease;
 }
 
 .hero-text p {
@@ -204,6 +450,7 @@ nav ul a.active {
   font-size: 16px;
   line-height: 1.8;
   max-width: 480px;
+  transition: color 0.6s ease;
 }
 
 .btn {
@@ -245,6 +492,7 @@ nav ul a.active {
   border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
   z-index: 1;
   transform: scale(1.1);
+  transition: background 0.6s ease;
 }
 
 .blob-bg {
@@ -255,6 +503,7 @@ nav ul a.active {
   box-shadow: 0 30px 60px rgba(59, 91, 255, 0.28);
   z-index: 2;
   transform: scale(1.1);
+  transition: background 0.6s ease, box-shadow 0.6s ease;
 }
 
 .blob-clip {
@@ -275,7 +524,7 @@ nav ul a.active {
 }
 
 /* ==========================================================
-   5. ABOUT PAGE SPECIFIC
+   6. ABOUT PAGE SPECIFIC
    ========================================================== */
 main.about-container {
   position: relative;
@@ -303,10 +552,12 @@ main.about-container {
   font-weight: 700;
   letter-spacing: -0.8px;
   line-height: 1.25;
+  transition: color 0.6s ease;
 }
 
 .about-header h1 span {
   color: var(--blue);
+  transition: color 0.6s ease;
 }
 
 .about-header p {
@@ -314,6 +565,7 @@ main.about-container {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.6;
+  transition: color 0.6s ease;
 }
 
 .grid-container {
@@ -325,19 +577,31 @@ main.about-container {
 .glass-card {
   background: var(--glass-card);
   backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(160%);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 20px 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03),
               inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, var(--theme-transition);
+}
+
+body.dark-mode .glass-card,
+[data-theme="dark"] .glass-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .glass-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 30px rgba(59, 91, 255, 0.08),
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .glass-card:hover,
+[data-theme="dark"] .glass-card:hover {
+  box-shadow: 0 14px 30px rgba(77, 112, 255, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .col-8 { grid-column: span 8; }
@@ -351,16 +615,19 @@ main.about-container {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: color 0.6s ease;
 }
 
 .card-title svg {
   color: var(--blue);
+  transition: color 0.6s ease;
 }
 
 .card-body p {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+  transition: color 0.6s ease;
 }
 
 .skills-wrapper {
@@ -378,7 +645,7 @@ main.about-container {
   font-size: 12px;
   font-weight: 600;
   color: var(--blue);
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
 }
 
 .skill-tag:hover {
@@ -388,7 +655,7 @@ main.about-container {
 }
 
 /* ==========================================================
-   6. FOOTERS (SHARED & ENHANCED)
+   7. FOOTERS (SHARED & ENHANCED)
    ========================================================== */
 footer {
   position: relative;
@@ -400,7 +667,7 @@ footer {
 
 footer a {
   color: var(--text);
-  transition: all 0.2s;
+  transition: all 0.2s, color 0.6s ease;
 }
 
 footer a:hover {
@@ -427,6 +694,7 @@ footer.enhanced-footer {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 15px;
+  transition: var(--theme-transition);
 }
 
 .footer-contact-items {
@@ -443,12 +711,13 @@ footer.enhanced-footer {
   font-size: 13.5px;
   color: var(--muted);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, color 0.6s ease;
 }
 
 .contact-item svg {
   color: var(--blue);
   flex-shrink: 0;
+  transition: color 0.6s ease;
 }
 
 .contact-item:hover {
@@ -463,7 +732,7 @@ footer.enhanced-footer {
 
 .social-links a {
   color: var(--text);
-  transition: all 0.2s ease;
+  transition: all 0.2s ease, color 0.6s ease;
   display: flex;
   align-items: center;
 }
@@ -474,14 +743,19 @@ footer.enhanced-footer {
 }
 
 /* ==========================================================
-   7. RESPONSIVE (MEDIA QUERIES)
+   8. RESPONSIVE (MEDIA QUERIES)
    ========================================================== */
 @media (max-width: 992px) {
   nav {
     top: 20px;
     width: 90%;
-    justify-content: center;
-    padding: 6px;
+    justify-content: space-between;
+    padding: 6px 12px;
+  }
+  
+  .theme-toggle-container {
+    transform: scale(0.85);
+    transform-origin: center left;
   }
   
   .hero {
