@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // ۱. اجرای کدهای سراسری (قابل استفاده در هر دو صفحه)
+  initThemeToggle();
   initBackgroundWaves();
   initJellyCursor();
   
@@ -11,6 +12,44 @@ document.addEventListener('DOMContentLoaded', () => {
     initAboutPage();
   }
 });
+
+/* ==========================================================
+   0. DAY / NIGHT THEME TOGGLE (WITH LOCALSTORAGE PERSISTENCE)
+   ========================================================== */
+function initThemeToggle() {
+  // جستجو بر اساس id اصلی یا کلاس ورودی تم
+  const themeToggle = document.getElementById('theme-toggle') || document.getElementById('theme-toggle-input') || document.querySelector('.theme-toggle-input');
+  if (!themeToggle) return;
+
+  // بررسی تم ذخیره‌شده از قبل در مرورگر کاربر
+  const savedTheme = localStorage.getItem('site-theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.body.setAttribute('data-theme', 'dark');
+    themeToggle.checked = true;
+  } else {
+    document.body.classList.remove('dark-mode');
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.body.setAttribute('data-theme', 'light');
+    themeToggle.checked = false;
+  }
+
+  // شنونده تغییر حالت سوئیچ
+  themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+      document.body.classList.add('dark-mode');
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('site-theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.body.setAttribute('data-theme', 'light');
+      localStorage.setItem('site-theme', 'light');
+    }
+  });
+}
 
 /* ==========================================================
    1. GLOBAL FEATURES (Waves Canvas & Jelly Cursor)
@@ -157,14 +196,12 @@ function initJellyCursor() {
 }
 
 /* ==========================================================
-   2. PAGE SPECIFIC INITIALIZERS (برای آینده)
+   2. PAGE SPECIFIC INITIALIZERS
    ========================================================== */
 function initHomePage() {
-  // در صورت نیاز به کدهای خاص صفحه اصلی، اینجا بنویسید.
   console.log("Home page specific JS active.");
 }
 
 function initAboutPage() {
-  // در صورت نیاز به کدهای خاص صفحه درباره ما، اینجا بنویسید.
   console.log("About page specific JS active.");
 }
