@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ۱. اجرای کدهای سراسری (قابل استفاده در هر دو صفحه)
+  
   initBackgroundWaves();
   initJellyCursor();
   
-  // ۲. منطق‌های اختصاصی بر اساس صفحه جاری
   const page = document.body.dataset.page;
   if (page === 'home') {
     initHomePage();
@@ -129,14 +128,14 @@ function initJellyCursor() {
 }
 
 /* ==========================================================
-   2. PAGE SPECIFIC INITIALIZERS (برای آینده)
+   2. PAGE SPECIFIC INITIALIZERS 
    ========================================================== */
 function initHomePage() {
-  // در صورت نیاز به کدهای خاص صفحه اصلی، اینجا بنویسید.
+
   console.log("Home page specific JS active.");
 }
 
 function initAboutPage() {
-  // در صورت نیاز به کدهای خاص صفحه درباره ما، اینجا بنویسید.
+
   console.log("About page specific JS active.");
 }
