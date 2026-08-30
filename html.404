@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | صفحه پیدا نشد</title>
+    <title>404 | Page Not Found </title>
     <link rel="stylesheet" href="style.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,7 +19,7 @@
             overflow: hidden;
         }
 
-        /* ===== موج‌های پس‌زمینه (canvas مخصوص script.js) ===== */
+        
         #bg-canvas {
             position: fixed;
             inset: 0;
@@ -29,7 +29,7 @@
             pointer-events: none;
         }
 
-        /* ===== نشانگر ژله‌ای (مخصوص script.js) ===== */
+ 
         #cursor-jelly, #cursor-dot {
             position: fixed;
             top: 0; left: 0;
@@ -51,7 +51,7 @@
         }
         @media (hover: none) { #cursor-jelly, #cursor-dot { display: none; } }
 
-        /* ===== حباب‌های شیشه‌ای شناور ===== */
+      
         .bubble {
             position: fixed;
             border-radius: 50%;
@@ -67,7 +67,7 @@
             to   { transform: translateY(-20vh); }
         }
 
-        /* ===== کارت شیشه‌ای اصلی ===== */
+      
         .glass-card {
             position: relative;
             z-index: 10;
@@ -87,7 +87,7 @@
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ===== عدد ۴۰۴ با گرادیان آبی ===== */
+      
         .code-404 {
             font-size: clamp(90px, 22vw, 160px);
             font-weight: 900;
@@ -115,7 +115,7 @@
             margin-bottom: 30px;
         }
 
-        /* ===== دکمه‌های شیشه‌ای ===== */
+      
         .btn {
             display: inline-block;
             padding: 14px 36px;
@@ -154,14 +154,14 @@
 </head>
 <body data-page="home">
 
-    <!-- Canvas موج‌ها — توسط script.js رسم می‌شود -->
+
     <canvas id="bg-canvas"></canvas>
 
-    <!-- نشانگر ژله‌ای — توسط script.js کنترل می‌شود -->
+  
     <div id="cursor-jelly"></div>
     <div id="cursor-dot"></div>
 
-    <!-- حباب‌های لیکویید شناور -->
+  
     <div class="bubble" style="width:80px;  height:80px;  left:10%; animation-duration:14s; animation-delay:0s;"></div>
     <div class="bubble" style="width:40px;2 height:40px;  left:25%; animation-duration:11s; animation-delay:2s;"></div>
     <div class="bubble" style="width:120px; height:120px; left:55%; animation-duration:18s; animation-delay:1s;"></div>
@@ -170,13 +170,13 @@
 
     <main class="glass-card">
         <div class="code-404">404</div>
-        <h1>صفحه‌ای که دنبالش بودی پیدا نشد! 🌊</h1>
+        <h1>Page Not Found! 🌊</h1>
         <p>
-            به نظر می‌رسد این صفحه در دریای وب گم شده است.
-            نگران نباش، می‌توانی به اقیانوس اصلی برگردی.
+            Looks like this page got lost in the digital ocean.
+            Don't worry, you can easily head back home.
         </p>
-        <a href="/" class="btn btn-primary">🏠 بازگشت به خانه</a>
-        <a href="javascript:history.back()" class="btn btn-ghost">↩ صفحه قبلی</a>
+        <a href="/" class="btn btn-primary">🏠 Back to Home</a>
+        <a href="javascript:history.back()" class="btn btn-ghost">↩ Go Back</a>
     </main>
 
     <script src="script.js"></script>
