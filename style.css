@@ -12,10 +12,17 @@
   --muted: #6b7280;
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none !important; /* پنهان کردن ماوس سیستم در تمام المان‌ها، دکمه‌ها و لینک‌ها */
+}
+
+html, body {
+  cursor: none !important;
 }
 
 body {
@@ -60,10 +67,10 @@ body[data-page="about"] {
   border: 1.5px solid rgba(59, 91, 255, 0.85);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
+  z-index: 99999;
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
+  will-change: transform;
 }
 
 #cursor-dot, .cursor-dot {
@@ -75,8 +82,8 @@ body[data-page="about"] {
   background: var(--blue);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
+  z-index: 100000;
+  will-change: transform;
 }
 
 /* ==========================================================
