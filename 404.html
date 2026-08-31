@@ -1,37 +1,340 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Page Not Found - Amir Rezaei</title>
+    <meta name="robots" content="noindex, follow">
+    <style>
+        :root {
+            --bg-dark: #050a1f;
+            --bg-mid: #0a1550;
+            --primary: #3b5bff;
+            --primary-light: #60a5fa;
+            --text: #ffffff;
+            --text-muted: rgba(220, 232, 255, 0.75);
+        }
 
-    <title>404 | Page Not Found</title>
-    <meta name="description" content="The page you are looking for could not be found.">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #050a1f;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Canvas for network wave lines */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(20, 35, 95, 0.5) 0%, #050a1f 100%);
+        }
+
+        /* Interactive Jelly Cursor */
+        #cursor-ring, #cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+        }
+
+        #cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(96, 165, 250, 0.7);
+            background: rgba(59, 91, 255, 0.08);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        #cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #60a5fa;
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.9);
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            #cursor-ring, #cursor-dot {
+                display: none !important;
+            }
+        }
+
+        /* Glassmorphism Error Card */
+        .error-card {
+            position: relative;
+            z-index: 10;
+            width: min(90%, 540px);
+            padding: 50px 40px;
+            text-align: center;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 60px rgba(0, 10, 40, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .error-code {
+            font-size: clamp(90px, 18vw, 150px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -4px;
+            background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 35%, #3b5bff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 35px rgba(59, 91, 255, 0.45));
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(59, 91, 255, 0.35));
+            }
+            100% {
+                filter: drop-shadow(0 0 45px rgba(96, 165, 250, 0.7));
+            }
+        }
+
+        .error-card h1 {
+            font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+            margin: 20px 0 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .error-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 420px;
+            margin: 0 auto 32px;
+        }
+
+        /* Action Buttons */
+        .button-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b5bff 0%, #2563eb 100%);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.65);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 40px 20px;
+            }
+            .button-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-    <canvas id="background"></canvas>
+    <!-- Background Canvas for Animated Floating Wave/Mesh Lines -->
+    <canvas id="bg-canvas"></canvas>
 
-    <div class="cursor-ring"></div>
-    <div class="cursor-dot"></div>
+    <!-- Interactive Jelly Cursor Elements -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
 
+    <!-- Error Card -->
     <main class="error-card">
         <div class="error-code">404</div>
-
-        <h1>Page Not Found</h1>
-
-        <p>
-            The page you are looking for does not exist
-            or may have been moved.
-        </p>
-
-        <a href="./index.html" class="home-button">
-            Back to Home
-        </a>
+        <h1>Lost in Cyberspace?</h1>
+        <p>The page you are looking for does not exist, has been removed, or is temporarily unavailable.</p>
+        <div class="button-group">
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+            <a href="javascript:history.back()" class="btn btn-secondary">Previous Page</a>
+        </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        // --- Canvas Background Animation (Nodes & Dynamic Wave Lines) ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height, points = [];
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            points = [];
+
+            const pointCount = Math.min(80, Math.max(35, Math.floor((width * height) / 18000)));
+
+            for (let i = 0; i < pointCount; i++) {
+                points.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.45,
+                    vy: (Math.random() - 0.5) * 0.45,
+                    radius: Math.random() * 1.5 + 0.8
+                });
+            }
+        }
+
+        function drawCanvas() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw connecting lines
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const dx = points[i].x - points[j].x;
+                    const dy = points[i].y - points[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 140) {
+                        const alpha = (1 - dist / 140) * 0.28;
+                        ctx.beginPath();
+                        ctx.moveTo(points[i].x, points[i].y);
+                        ctx.lineTo(points[j].x, points[j].y);
+                        ctx.strokeStyle = `rgba(96, 165, 250, ${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw & Update Points
+            for (let p of points) {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(147, 197, 253, 0.75)';
+                ctx.fill();
+            }
+
+            requestAnimationFrame(drawCanvas);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawCanvas();
+
+        // --- Smooth Elastic Jelly Cursor ---
+        const ring = document.getElementById('cursor-ring');
+        const dot = document.getElementById('cursor-dot');
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Direct update for dot (zero lag)
+            dot.style.left = `${mouseX}px`;
+            dot.style.top = `${mouseY}px`;
+        });
+
+        // Smooth physics-based interpolation for the Jelly Ring
+        function renderCursor() {
+            ringX += (mouseX - ringX) * 0.16;
+            ringY += (mouseY - ringY) * 0.16;
+
+            ring.style.left = `${ringX}px`;
+            ring.style.top = `${ringY}px`;
+
+            requestAnimationFrame(renderCursor);
+        }
+        renderCursor();
+
+        // Cursor scaling on interactive element hover
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                ring.style.transform = 'translate(-50%, -50%) scale(1.45)';
+                ring.style.borderColor = 'rgba(147, 197, 253, 0.9)';
+                ring.style.background = 'rgba(59, 91, 255, 0.2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                ring.style.transform = 'translate(-50%, -50%) scale(1)';
+                ring.style.borderColor = 'rgba(96, 165, 250, 0.7)';
+                ring.style.background = 'rgba(59, 91, 255, 0.08)';
+            });
+        });
+    </script>
 </body>
 </html>
