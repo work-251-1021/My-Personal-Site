@@ -13,14 +13,14 @@
   <script src="script.js" defer></script>
 
   <style>
-    /* ================= Custom Cursor Interaction Fix ================= */
+
     .cursor-jelly,
     .cursor-dot {
-      pointer-events: none !important; /* Prevents cursor overlay from blocking clicks */
-      z-index: 100000000 !important;   /* Keeps cursor visible above the terminal window */
+      pointer-events: none !important; 
+      z-index: 100000000 !important;  
     }
 
-    /* ================= Linux Terminal Modal Styling ================= */
+
     .linux-terminal-modal {
       position: fixed;
       top: 120px;
@@ -28,7 +28,7 @@
       width: 580px;
       max-width: calc(100vw - 30px);
       height: 360px;
-      background: rgba(48, 10, 36, 0.96); /* Ubuntu terminal purple */
+      background: rgba(48, 10, 36, 0.96); 
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-radius: 10px;
@@ -49,7 +49,7 @@
       display: none !important;
     }
 
-    /* Draggable Header Bar */
+
     .linux-terminal-header {
       background: linear-gradient(180deg, #43423e 0%, #353430 100%);
       height: 38px;
@@ -121,7 +121,7 @@
       letter-spacing: 0.3px;
     }
 
-    /* Terminal Body & Prompt */
+    
     .linux-terminal-body {
       padding: 16px;
       font-size: 15px;
@@ -193,100 +193,72 @@
   <div class="cursor-dot" id="cursor-dot"></div>
 
   <nav>
-    <div: 'Poppins', sans-serif;
-      pointer-events: none;
-      letter-spacing: 0.3px;
-    }
+    <div class="theme-toggle-container">
+      <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle theme">
+      <label for="theme-toggle" class="theme-toggle-label">
+        <div class="toggle-thumb">
+          <div class="crater crater-1"></div>
+          <div class="crater crater-2"></div>
+          <div class="crater crater-3"></div>
+        </div>
+        <div class="clouds cloud-bg"></div>
+        <div class="clouds cloud-fg"></div>
+        <div class="star star-1">✦</div>
+        <div class="star star-2">★</div>
+        <div class="star star-3">✦</div>
+        <div class="star star-4">★</div>
+        <div class="crater-aura crater-aura-1"></div>
+        <div class="crater-aura crater-aura-2"></div>
+      </label>
+    </div>
 
-    /* Terminal Body & Prompt */
-    .linux-terminal-body {
-      padding: 16px;
-      font-size: 15px;
-      line-height: 1.6;
-      flex-grow: 1;
-      overflow-y: auto;
-      cursor: text;
-    }
+    <div class="logo-box">
+      <a href="index.html" class="logo">Personal Page</a>
+    </div>
 
-    .prompt-user {
-      color: #8ae234;
-      font-weight: 700;
-    }
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
-    .prompt-dir {
-      color: #729fcf;
-      font-weight: 700;
-    }
+  <main class="hero">
+    <div class="hero-text">
+      <div class="hi">Hi, I am <span class="name">Amir Rezaei</span><span class="role">Python Developer</span></div>
+      <p>I build robust backend systems, automate complex workflows, and design clean, reliable applications tailored for real-world performance.</p>
+      <a href="projects.html" class="btn">projects</a>
+    </div>
+    
+    <div class="blob-wrap">
+      <div class="blob-halo"></div>
+      <div class="blob-bg"></div>
+      <div class="blob-clip">
+        <img class="blob-img" src="amir.jpg" alt="Amir Rezaei">
+      </div>
+    </div>
+  </main>
 
-    .prompt-symbol {
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .term-line {
-      margin-bottom: 5px;
-      word-break: break-all;
-      white-space: pre-wrap;
-    }
-
-    .term-output {
-      color: #eeeeec;
-      margin-bottom: 12px;
-      white-space: pre-wrap;
-      line-height: 1.5;
-    }
-
-    .ls-dir {
-      color: #729fcf;
-      font-weight: bold;
-      margin-right: 18px;
-      display: inline-block;
-    }
-
-    .input-line {
-      display: flex;
-      align-items: center;
-    }
-
-    .term-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #ffffff;
-      font-family: 'Ubuntu Mono', 'Courier New', monospace;
-      font-size: 15px;
-      flex: 1;
-      min-width: 100px;
-      padding: 0;
-      margin-left: 6px;
-      caret-color: #ffffff;
-    }
-  </style>
-</head>
-<body data-page="home">
-
-  <canvas id="bg-canvas"></canvas>
-  <div class="cursor-jelly" id="cursor-jelly"></div>
-  <div class="cursor-dot" id="cursor-dot"></div>
-
-  <nav>
-    <div-close" title="Close"></span>
+  <!-- ================= Linux Floating Interactive Terminal ================= -->
+  <div id="linux-terminal" class="linux-terminal-modal hidden">
+    <div class="linux-terminal-header" id="linux-term-header">
+      <div class="linux-controls">
+        <span class="linux-btn btn-close" id="linux-term-close" title="Close"></span>
         <span class="linux-btn btn-minimize"></span>
         <span class="linux-btn btn-maximize"></span>
       </div>
-      <div class="linux-terminal-title">rezaei@work-251-1021: ~</div>
+      <div class="linux-terminal-title">amir-rezaei@work-251-1021: ~</div>
     </div>
     
     <div class="linux-terminal-body" id="linux-term-body">
       <div id="term-history"></div>
       <div class="input-line">
-        <span class="prompt-user">rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+        <span class="prompt-user">amir-rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
         <input type="text" id="term-cli-input" class="term-input" autocomplete="off" spellcheck="false" autofocus>
       </div>
     </div>
   </div>
 
-  <!-- Terminal Logic, Shell Commands & Dragging -->
+ 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const terminal = document.getElementById("linux-terminal");
@@ -298,7 +270,7 @@
 
       if (!terminal) return;
 
-      /* ================= Toggle Visibility with '0' Key ================= */
+     
       const openTerminal = () => {
         terminal.classList.remove("hidden");
         setTimeout(() => cliInput.focus(), 50);
@@ -326,26 +298,31 @@
         }
       });
 
-      // Focus input on terminal body click
+    
       body.addEventListener("click", () => {
         cliInput.focus();
       });
 
-      /* ================= Shell Commands Execution ================= */
+     
       cliInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {            line.innerHTML = `<span class="prompt-user">rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span> ${rawCommand}`;
+        if (e.key === "Enter") {
+          const rawCommand = cliInput.value;
+          const cmd = rawCommand.trim();
+
+          if (cmd === "clear") {
+            history.innerHTML = "";
+            cliInput.value = "";
+            return;
+          }
+
+          if (cmd !== "") {
+
+            const line = document.createElement("div");
+            line.className = "term-line";
+            line.innerHTML = `<span class="prompt-user">amir-rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span> ${rawCommand}`;
             history.appendChild(line);
 
-            // Render command output
-            const out = document.createElement("div");
-            out.className = "term-output";
-
-            switch (cmd.toLowerCase()) {
-              case "help":
-                out.innerHTML = "GNU bash, version 5:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span> ${rawCommand}`;
-            history.appendChild(line);
-
-            // Render command output
+      
             const out = document.createElement("div");
             out.className = "term-output";
 
@@ -364,7 +341,7 @@
                 break;
 
               case "whoami":
-                out.textContent = "rezaei";
+                out.textContent = "amir-rezaei";
                 break;
 
               default:
@@ -376,7 +353,7 @@
           } else {
             const line = document.createElement("div");
             line.className = "term-line";
-            line.innerHTML = `<span class="prompt-user">rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>`;
+            line.innerHTML = `<span class="prompt-user">amir-rezaei@work-251-1021</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>`;
             history.appendChild(line);
           }
 
@@ -385,7 +362,7 @@
         }
       });
 
-      /* ================= Drag & Drop Logic ================= */
+      
       let isDragging = false;
       let offsetX = 0;
       let offsetY = 0;
@@ -403,7 +380,7 @@
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
 
-        // Prevent dragging outside viewport bounds
+  
         newX = Math.max(10, Math.min(window.innerWidth - terminal.offsetWidth - 10, newX));
         newY = Math.max(10, Math.min(window.innerHeight - terminal.offsetHeight - 10, newY));
 
