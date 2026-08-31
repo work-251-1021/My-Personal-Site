@@ -71,132 +71,6 @@
       --text-secondary: #64748b;
     }
 
-    /* Mobile Glass Overlay */
-    #mobile-glass-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9999999;
-      background: radial-gradient(circle at 50% 30%, #0b0f19 0%, #030712 100%);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-    }
-
-    .liquid-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.55;
-      animation: floatOrb 8s ease-in-out infinite alternate;
-    }
-    .orb-1 {
-      width: 250px;
-      height: 250px;
-      background: linear-gradient(135deg, var(--blue, #3b5bff), #8a2be2);
-      top: 15%;
-      left: 10%;
-    }
-    .orb-2 {
-      width: 220px;
-      height: 220px;
-      background: linear-gradient(135deg, #00d2ff, var(--blue-dark, #2e47d4));
-      bottom: 20%;
-      right: 10%;
-      animation-delay: -4s;
-    }
-
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(25px, 35px) scale(1.15); }
-    }
-
-    .mobile-glass-card {
-      position: relative;
-      z-index: 10;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(25px) saturate(180%);
-      -webkit-backdrop-filter: blur(25px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-top: 1px solid rgba(59, 91, 255, 0.5);
-      border-radius: 28px;
-      padding: 40px 28px;
-      text-align: center;
-      max-width: 380px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-
-    .glass-icon-wrapper {
-      width: 75px;
-      height: 75px;
-      margin: 0 auto 20px;
-      background: rgba(59, 91, 255, 0.15);
-      border: 1px solid rgba(59, 91, 255, 0.35);
-      border-radius: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 25px rgba(59, 91, 255, 0.35);
-    }
-
-    .glass-icon-wrapper svg {
-      width: 38px;
-      height: 38px;
-      stroke: var(--blue, #3b5bff);
-    }
-
-    .mobile-glass-card h2 {
-      color: #ffffff;
-      font-size: 1.45rem;
-      font-weight: 700;
-      margin: 0 0 12px 0;
-    }
-
-    .mobile-glass-card h2 span {
-      background: linear-gradient(135deg, var(--blue, #3b5bff), #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .mobile-glass-card p {
-      color: #94a3b8;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin: 0 0 24px 0;
-    }
-
-    .glass-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(59, 91, 255, 0.12);
-      border: 1px solid rgba(59, 91, 255, 0.3);
-      color: #93c5fd;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background-color: var(--blue, #3b5bff);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--blue, #3b5bff);
-    }
-
-    @media (max-width: 1024px) {
-      #mobile-glass-overlay { display: flex !important; }
-      body > *:not(#mobile-glass-overlay) { display: none !important; }
-    }
-
     /* Minimal Floating Back Button */
     .top-action-bar {
       position: absolute;
@@ -447,33 +321,48 @@
       position: relative;
       z-index: 2;
     }
+
+    /* Responsive Queries for Projects Page */
+    @media (max-width: 768px) {
+      .top-action-bar {
+        position: relative;
+        top: 0;
+        left: 0;
+        padding: 20px 20px 0;
+      }
+      .projects-container {
+        margin: 20px auto 30px;
+        padding: 0 16px;
+      }
+      .projects-header {
+        margin-bottom: 32px;
+      }
+      .projects-header h1 {
+        font-size: 2rem;
+      }
+      .projects-header p {
+        font-size: 0.95rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects-header h1 {
+        font-size: 1.7rem;
+      }
+      .repo-card {
+        padding: 18px;
+      }
+    }
   </style>
 
   <!-- Shared Script -->
   <script src="script.js" defer></script>
 </head>
 <body data-page="projects">
-
-  <!-- Mobile Glass Block Screen -->
-  <div id="mobile-glass-overlay">
-    <div class="liquid-orb orb-1"></div>
-    <div class="liquid-orb orb-2"></div>
-    <div class="mobile-glass-card">
-      <div class="glass-icon-wrapper">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21"></line>
-          <line x1="12" y1="17" x2="12" y2="21"></line>
-        </svg>
-      </div>
-      <h2>Desktop View <span>Only</span></h2>
-      <p>This portfolio is crafted with high-performance animations designed exclusively for larger screens. Please switch to a desktop or laptop for the full experience.</p>
-      <div class="glass-badge">
-        <span class="badge-dot"></span>
-        Best viewed on PC
-      </div>
-    </div>
-  </div>
 
   <canvas id="bg-canvas"></canvas>
   <div class="cursor-jelly" id="cursor-jelly"></div>
@@ -575,7 +464,7 @@
     window.addEventListener('storage', syncTheme);
     window.addEventListener('focus', syncTheme);
     document.addEventListener('DOMContentLoaded', syncTheme);
-    setInterval(syncTheme, 300); // Guarantees instant sync whenever you switch theme in another tab/page
+    setInterval(syncTheme, 300);
 
     async function fetchGitHubProjects() {
       const container = document.getElementById('github-repos-container');
