@@ -6,10 +6,12 @@
     <title>404 | Page Not Found</title>
     <meta name="robots" content="noindex, follow">
     <style>
-        * {
+        /* مخفی کردن کامل نشانگر پیش‌فرض سیستم روی کل صفحه و تمام عناصر */
+        *, *::before, *::after, html, body, a, button {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none !important;
         }
 
         html, body {
@@ -24,7 +26,7 @@
             justify-content: center;
         }
 
-        /* Canvas for wave lines */
+        /* بوم امواج پس‌زمینه */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -35,7 +37,7 @@
             pointer-events: none;
         }
 
-        /* Jelly Cursor Elements matching your script.js */
+        /* اجزای موس ژله‌ای هماهنگ با script.js */
         #cursor-jelly, #cursor-dot {
             position: fixed;
             top: 0;
@@ -49,8 +51,8 @@
         #cursor-jelly {
             width: 36px;
             height: 36px;
-            border: 1.5px solid rgba(96, 165, 250, 0.7);
-            background: rgba(59, 91, 255, 0.08);
+            border: 1.5px solid rgba(96, 165, 250, 0.75);
+            background: rgba(59, 91, 255, 0.1);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
         }
@@ -62,18 +64,22 @@
             box-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
         }
 
+        /* غیرفعال‌سازی در صفحات لمسی موبایل */
         @media (hover: none), (pointer: coarse) {
             #cursor-jelly, #cursor-dot {
                 display: none !important;
             }
+            *, *::before, *::after, html, body, a, button {
+                cursor: auto !important;
+            }
         }
 
-        /* Real Liquid Glassmorphism Card */
+        /* کارت شیشه مایع (Liquid Glass) */
         .liquid-glass {
             position: relative;
             z-index: 10;
             width: min(88%, 420px);
-            padding: 45px 30px;
+            padding: 48px 32px;
             text-align: center;
             border-radius: 28px;
             background: rgba(255, 255, 255, 0.03);
@@ -98,23 +104,23 @@
             }
         }
 
-        /* Clean Flat 404 Typography */
+        /* متن ۴۰۴ ساده، مدرن و بدون افکت زننده */
         .code-404 {
-            font-size: clamp(80px, 18vw, 120px);
+            font-size: clamp(84px, 18vw, 120px);
             font-weight: 800;
             line-height: 1;
             letter-spacing: -3px;
             color: #ffffff;
             user-select: none;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
-        /* Back to Home Button */
+        /* دکمه Back to Home */
         .btn-home {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 13px 32px;
+            padding: 13px 34px;
             font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
@@ -124,7 +130,6 @@
             border-radius: 50px;
             box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
         }
 
         .btn-home:hover {
@@ -142,7 +147,7 @@
     <!-- Waves Background Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Jelly Cursor Elements (Managed by script.js) -->
+    <!-- Custom Jelly Cursor Elements -->
     <div id="cursor-jelly"></div>
     <div id="cursor-dot"></div>
 
@@ -152,7 +157,7 @@
         <a href="index.html" class="btn-home">Back to Home</a>
     </main>
 
-    <!-- Project Script -->
+    <!-- Global Script -->
     <script src="script.js"></script>
 </body>
 </html>
