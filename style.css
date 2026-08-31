@@ -1,5 +1,5 @@
 /* ==========================================================
-   1. ROOT VARIABLES & GLOBAL RESET 
+   1. ROOT VARIABLES & GLOBAL RESET
    ========================================================== */
 :root {
   --blue: #3b5bff;
@@ -17,7 +17,7 @@
                       box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Mode Variables */
+/* Dark Mode */
 body.dark-mode,
 [data-theme="dark"] body,
 body[data-theme="dark"] {
@@ -40,7 +40,6 @@ body[data-theme="dark"] {
   box-sizing: border-box;
 }
 
-/* نشانگر ژله‌ای فقط روی سیستم‌هایی که موس دارند */
 @media (hover: hover) and (pointer: fine) {
   *, *::before, *::after, html, body {
     cursor: none !important;
@@ -86,7 +85,6 @@ body[data-page="about"] {
   transition: opacity 0.6s ease;
 }
 
-/* Jelly Custom Cursor */
 #cursor-jelly, .cursor-jelly {
   position: fixed;
   top: 0;
@@ -117,7 +115,7 @@ body[data-page="about"] {
 }
 
 /* ==========================================================
-   3. DAY / NIGHT THEME TOGGLE SWITCH (INSIDE NAVBAR)
+   3. THEME TOGGLE SWITCH
    ========================================================== */
 .theme-toggle-container {
   position: static;
@@ -179,26 +177,9 @@ body[data-page="about"] {
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.crater-1 {
-  width: 10px;
-  height: 10px;
-  top: 14px;
-  left: 8px;
-}
-
-.crater-2 {
-  width: 7px;
-  height: 7px;
-  top: 6px;
-  right: 9px;
-}
-
-.crater-3 {
-  width: 5px;
-  height: 5px;
-  bottom: 6px;
-  right: 12px;
-}
+.crater-1 { width: 10px; height: 10px; top: 14px; left: 8px; }
+.crater-2 { width: 7px; height: 7px; top: 6px; right: 9px; }
+.crater-3 { width: 5px; height: 5px; bottom: 6px; right: 12px; }
 
 .clouds {
   position: absolute;
@@ -241,33 +222,10 @@ body[data-page="about"] {
   user-select: none;
 }
 
-.star-1 {
-  top: 7px;
-  left: 16px;
-  font-size: 10px;
-  transition-delay: 0.1s;
-}
-
-.star-2 {
-  top: 24px;
-  left: 32px;
-  font-size: 8px;
-  transition-delay: 0.15s;
-}
-
-.star-3 {
-  top: 11px;
-  left: 46px;
-  font-size: 6px;
-  transition-delay: 0.25s;
-}
-
-.star-4 {
-  top: 28px;
-  left: 18px;
-  font-size: 7px;
-  transition-delay: 0.25s;
-}
+.star-1 { top: 7px; left: 16px; font-size: 10px; transition-delay: 0.1s; }
+.star-2 { top: 24px; left: 32px; font-size: 8px; transition-delay: 0.15s; }
+.star-3 { top: 11px; left: 46px; font-size: 6px; transition-delay: 0.25s; }
+.star-4 { top: 28px; left: 18px; font-size: 7px; transition-delay: 0.25s; }
 
 .crater-aura {
   position: absolute;
@@ -278,19 +236,8 @@ body[data-page="about"] {
   pointer-events: none;
 }
 
-.crater-aura-1 {
-  width: 62px;
-  height: 62px;
-  top: -9px;
-  right: -8px;
-}
-
-.crater-aura-2 {
-  width: 86px;
-  height: 86px;
-  top: -21px;
-  right: -20px;
-}
+.crater-aura-1 { width: 62px; height: 62px; top: -9px; right: -8px; }
+.crater-aura-2 { width: 86px; height: 86px; top: -21px; right: -20px; }
 
 .theme-toggle-input:checked + .theme-toggle-label {
   background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
@@ -326,7 +273,7 @@ body[data-page="about"] {
 }
 
 /* ==========================================================
-   4. NAVIGATION (SHARED)
+   4. NAVIGATION
    ========================================================== */
 nav {
   position: fixed;
@@ -404,7 +351,7 @@ nav ul a.active {
 }
 
 /* ==========================================================
-   5. INDEX (HOME) PAGE SPECIFIC
+   5. HERO SECTION (HOME PAGE)
    ========================================================== */
 .hero {
   position: relative;
@@ -527,7 +474,7 @@ nav ul a.active {
 }
 
 /* ==========================================================
-   6. ABOUT PAGE SPECIFIC
+   6. ABOUT PAGE & FOOTER
    ========================================================== */
 main.about-container {
   position: relative;
@@ -601,12 +548,6 @@ body.dark-mode .glass-card,
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-body.dark-mode .glass-card:hover,
-[data-theme="dark"] .glass-card:hover {
-  box-shadow: 0 14px 30px rgba(77, 112, 255, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
 .col-8 { grid-column: span 8; }
 .col-4 { grid-column: span 4; }
 
@@ -657,27 +598,6 @@ body.dark-mode .glass-card:hover,
   box-shadow: 0 4px 12px rgba(59, 91, 255, 0.3);
 }
 
-/* ==========================================================
-   7. FOOTERS (SHARED & ENHANCED)
-   ========================================================== */
-footer {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  gap: 24px;
-  padding: 24px 64px 40px;
-}
-
-footer a {
-  color: var(--text);
-  transition: all 0.2s, color 0.6s ease;
-}
-
-footer a:hover {
-  color: var(--blue);
-  transform: translateY(-2px);
-}
-
 footer.enhanced-footer {
   position: relative;
   z-index: 10;
@@ -690,8 +610,6 @@ footer.enhanced-footer {
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 16px 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03),
-              inset 0 1px 0 rgba(255, 255, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -723,9 +641,7 @@ footer.enhanced-footer {
   transition: color 0.6s ease;
 }
 
-.contact-item:hover {
-  color: var(--blue);
-}
+.contact-item:hover { color: var(--blue); }
 
 .social-links {
   display: flex;
@@ -746,10 +662,8 @@ footer.enhanced-footer {
 }
 
 /* ==========================================================
-   8. RESPONSIVE (MEDIA QUERIES)
+   7. RESPONSIVE (MEDIA QUERIES)
    ========================================================== */
-
-/* تبلت‌ها و صفحات متوسط */
 @media (max-width: 992px) {
   nav {
     top: 15px;
@@ -762,30 +676,6 @@ footer.enhanced-footer {
   .theme-toggle-container {
     transform: scale(0.85);
     transform-origin: center left;
-  }
-  
-  .hero {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: 100px 24px 40px;
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .hero-text {
-    transform: translateX(0);
-    max-width: 100%;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .blob-wrap {
-    transform: translateX(0);
-    width: 280px;
-    height: 280px;
-    margin: 0 auto;
   }
 
   body[data-page="about"] {
@@ -804,10 +694,6 @@ footer.enhanced-footer {
 
   .about-header h1 {
     font-size: 28px;
-  }
-
-  .about-header p {
-    font-size: 15px;
   }
 
   .col-8, .col-4 {
@@ -834,7 +720,6 @@ footer.enhanced-footer {
   }
 }
 
-/* موبایل‌های استاندارد */
 @media (max-width: 768px) {
   #cursor-jelly, #cursor-dot {
     display: none !important;
@@ -843,22 +728,22 @@ footer.enhanced-footer {
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 85px 20px 25px; /* فاصله مناسب از نوبار */
-    gap: 14px; /* فاصله تمیز و استاندارد بین عکس و متن */
+    padding: 95px 20px 30px;
+    gap: 0;
     justify-content: center;
   }
 
   .blob-wrap {
     transform: translateX(0);
-    width: 210px; /* سایز استاندارد بدون شلوغ کردن صفحه */
-    height: 210px;
+    width: 250px;
+    height: 250px;
     margin: 0 auto;
   }
 
   .hero-text {
     transform: translateX(0);
     max-width: 100%;
-    margin-top: 0; /* بدون هیچ مارجین منفی */
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -890,14 +775,8 @@ footer.enhanced-footer {
   .skills-wrapper {
     justify-content: center;
   }
-
-  footer:not(.enhanced-footer) {
-    justify-content: center;
-    padding: 15px 16px 25px;
-  }
 }
 
-/* موبایل‌های کوچک */
 @media (max-width: 480px) {
   nav {
     gap: 8px;
@@ -922,13 +801,12 @@ footer.enhanced-footer {
   }
 
   .hero {
-    padding: 75px 16px 20px;
-    gap: 10px;
+    padding: 85px 16px 20px;
   }
 
   .blob-wrap {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
 
   .hero-text .hi {
