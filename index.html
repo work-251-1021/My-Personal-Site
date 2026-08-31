@@ -5,39 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amir Rezaei | Personal Page</title>
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- CSS مشترک پروژه -->
+  <!-- CSS اصلی -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- بالا بردن متن بدون تکان خوردن عکس در موبایل -->
-  <style>
-    @media (max-width: 768px) {
-      .hero-text {
-        transform: translateY(-105px) !important;
-        margin-bottom: -105px !important;
-      }
-    }
-  </style>
-
-  <!-- JavaScript مشترک پروژه -->
   <script src="script.js" defer></script>
 </head>
 <body data-page="home">
 
-  <!-- Background Animated Canvas -->
   <canvas id="bg-canvas"></canvas>
-  
-  <!-- Jelly Custom Cursor -->
   <div class="cursor-jelly" id="cursor-jelly"></div>
   <div class="cursor-dot" id="cursor-dot"></div>
 
-  <!-- NAVIGATION BAR -->
   <nav>
-    <!-- ۱. دکمه تم (سمت چپ) -->
     <div class="theme-toggle-container">
       <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle theme">
       <label for="theme-toggle" class="theme-toggle-label">
@@ -56,26 +39,23 @@
         <div class="crater-aura crater-aura-2"></div>
       </label>
     </div>
-
-    <!-- ۲. لوگو / باکس عنوان -->
     <div class="logo-box">
       <a href="index.html" class="logo">Personal Page</a>
     </div>
-
-    <!-- ۳. منوها (سمت راست) -->
     <ul>
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
 
-  <!-- HERO SECTION -->
   <main class="hero">
+    <!-- بلوک متن: در موبایل با margin-top منفی به سمت بالا کشیده می‌شود -->
     <div class="hero-text">
       <div class="hi">Hi, I am <span class="name">Amir Rezaei</span><span class="role">Python Developer</span></div>
       <p>I build robust backend systems, automate complex workflows, and design clean, reliable applications tailored for real-world performance.</p>
       <a href="projects.html" class="btn">projects</a>
     </div>
+    
     <div class="blob-wrap">
       <div class="blob-halo"></div>
       <div class="blob-bg"></div>
@@ -86,4 +66,3 @@
   </main>
 </body>
 </html>
-
