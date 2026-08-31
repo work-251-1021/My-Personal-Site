@@ -23,6 +23,9 @@ This website is a **simple template** created as my very first experience with w
 4. **Change Text:** Open the `index.html` file and write your own content.
 5. Open `index.html` in your browser to see your website!
 
+### Shortcuts
+1.prees 0 for terminal it has some basics command like : ls,clear,whoami
+
 ---
 
 ###  Feedback
@@ -30,3 +33,5 @@ This website is a **simple template** created as my very first experience with w
 Since this is my first project, any suggestions, feedback, or improvements are very welcome! 
 
  *Feel free to use it, learn from it, and improve it!*
+
+ 
