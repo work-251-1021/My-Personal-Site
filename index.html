@@ -13,6 +13,34 @@
   <!-- CSS مشترک پروژه -->
   <link rel="stylesheet" href="style.css">
 
+  <!-- تنظیم فاصله بهینه متن و تصویر فقط در موبایل بدون دست‌زدن به دسکتاپ -->
+  <style>
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 20px !important;
+        padding-bottom: 30px !important;
+        gap: 20px !important; /* کاهش فاصله عمودی بین عکس و متن */
+      }
+
+      .blob-wrap {
+        margin-bottom: 0 !important;
+      }
+
+      .hero-text {
+        margin-top: 0 !important;
+      }
+
+      .hero-text .hi {
+        margin-bottom: 10px !important;
+      }
+
+      .hero-text p {
+        margin-top: 8px !important;
+        margin-bottom: 20px !important;
+      }
+    }
+  </style>
+
   <!-- JavaScript مشترک پروژه -->
   <script src="script.js" defer></script>
 </head>
