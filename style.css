@@ -773,8 +773,8 @@ footer.enhanced-footer {
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 95px 24px 30px; /* کاهش پدینگ برای جمع‌وجور شدن صفحه */
-    gap: 15px; /* کاهش فاصله بین تصویر و متن */
+    padding: 100px 24px 40px;
+    gap: 20px;
   }
 
   .hero-text {
@@ -783,7 +783,6 @@ footer.enhanced-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -30px; /* متن حدود ۳۰ درصد به سمت بالا کشیده می‌شود */
   }
 
   .blob-wrap {
@@ -845,32 +844,32 @@ footer.enhanced-footer {
   }
 
   .hero {
-    padding-top: 85px;
-    gap: 10px;
+    padding: 90px 20px 30px;
+    gap: 12px;
   }
 
   .hero-text {
-    margin-top: -45px; /* شیفت مناسب رو به بالا در موبایل */
+    margin-top: -30px; /* انتقال کل مجموعه متن و دکمه به سمت بالا */
   }
 
   .hero-text .hi {
-    font-size: 36px;
+    font-size: 34px;
   }
 
   .hero-text .role {
-    font-size: 28px;
+    font-size: 26px;
     margin-top: 2px;
   }
 
   .hero-text p {
     font-size: 14.5px;
-    padding: 0 8px;
+    padding: 0 10px;
     margin-top: 14px;
   }
 
   .blob-wrap {
-    width: 240px;
-    height: 240px;
+    width: 230px;
+    height: 230px;
   }
 
   .btn {
@@ -914,90 +913,16 @@ footer.enhanced-footer {
   }
 
   .hero {
-    padding-top: 75px;
+    padding: 80px 16px 25px;
     gap: 8px;
   }
 
   .hero-text {
-    margin-top: -35px;
+    margin-top: -25px;
   }
 
   .hero-text .hi {
-    font-size: 30px;
-  }
-
-  .hero-text .role {
-    font-size: 22px;
-  }
-
-  .blob-wrap {
-    width: 190px;
-    height: 190px;
-  }
-
-  .about-header h1 {
-    font-size: 23px;
-  }
-
-  .glass-card {
-    padding: 16px 18px;
-  }
-
-  .contact-item {
-    : 240px;
-  }
-
-  .btn {
-    padding: 12px 32px;
-    font-size: 14px;
-    margin-top: 20px;
-  }
-
-  .skills-wrapper {
-    justify-content: center;
-  }
-
-  footer:not(.enhanced-footer) {
-    justify-content: center;
-    padding: 15px 16px 25px;
-  }
-}
-
-/* موبایل‌های کوچک */
-@media (max-width: 480px) {
-  nav {
-    gap: 8px;
-    padding: 6px 10px;
-  }
-
-  .logo-box {
-    padding: 6px 12px;
-  }
-
-  .logo {
-    font-size: 13px;
-  }
-
-  nav ul a {
-    font-size: 12.5px;
-    padding: 6px 10px;
-  }
-
-  .theme-toggle-container {
-    transform: scale(0.72);
-  }
-
-  .hero {
-    padding-top: 75px;
-    gap: 8px;
-  }
-
-  .hero-text {
-    margin-top: -35px;
-  }
-
-  .hero-text .hi {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .hero-text .role {
