@@ -153,7 +153,6 @@ body[data-page="about"] {
   cursor: pointer;
 }
 
-/* Sun / Moon Thumb Ball */
 .toggle-thumb {
   position: absolute;
   top: 4px;
@@ -170,7 +169,6 @@ body[data-page="about"] {
   z-index: 5;
 }
 
-/* Moon Craters inside thumb */
 .crater {
   position: absolute;
   background: #757d8a;
@@ -202,7 +200,6 @@ body[data-page="about"] {
   right: 12px;
 }
 
-/* Day Mode Clouds */
 .clouds {
   position: absolute;
   border-radius: 50px;
@@ -233,7 +230,6 @@ body[data-page="about"] {
   z-index: 3;
 }
 
-/* Dark Mode Stars */
 .star {
   position: absolute;
   color: #ffffff;
@@ -273,7 +269,6 @@ body[data-page="about"] {
   transition-delay: 0.25s;
 }
 
-/* Dark Mode Aura Background Circles */
 .crater-aura {
   position: absolute;
   border-radius: 50%;
@@ -297,7 +292,6 @@ body[data-page="about"] {
   right: -20px;
 }
 
-/* Active Dark Mode Toggle State */
 .theme-toggle-input:checked + .theme-toggle-label {
   background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
   border-color: rgba(255, 255, 255, 0.15);
@@ -755,7 +749,7 @@ footer.enhanced-footer {
    8. RESPONSIVE (MEDIA QUERIES)
    ========================================================== */
 
-/* تبلت‌ها و صفحه‌های متوسط */
+/* تبلت‌ها و صفحات متوسط */
 @media (max-width: 992px) {
   nav {
     top: 15px;
@@ -775,11 +769,13 @@ footer.enhanced-footer {
     text-align: center;
     padding: 100px 24px 40px;
     gap: 20px;
+    justify-content: center;
   }
 
   .hero-text {
     transform: translateX(0);
     max-width: 100%;
+    margin-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -787,8 +783,9 @@ footer.enhanced-footer {
 
   .blob-wrap {
     transform: translateX(0);
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
   }
 
   body[data-page="about"] {
@@ -844,38 +841,50 @@ footer.enhanced-footer {
   }
 
   .hero {
-    padding: 90px 20px 30px;
-    gap: 12px;
-  }
-
-  .hero-text {
-    margin-top: -30px; /* انتقال کل مجموعه متن و دکمه به سمت بالا */
-  }
-
-  .hero-text .hi {
-    font-size: 34px;
-  }
-
-  .hero-text .role {
-    font-size: 26px;
-    margin-top: 2px;
-  }
-
-  .hero-text p {
-    font-size: 14.5px;
-    padding: 0 10px;
-    margin-top: 14px;
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 85px 20px 25px; /* فاصله مناسب از نوبار */
+    gap: 14px; /* فاصله تمیز و استاندارد بین عکس و متن */
+    justify-content: center;
   }
 
   .blob-wrap {
-    width: 230px;
-    height: 230px;
+    transform: translateX(0);
+    width: 210px; /* سایز استاندارد بدون شلوغ کردن صفحه */
+    height: 210px;
+    margin: 0 auto;
+  }
+
+  .hero-text {
+    transform: translateX(0);
+    max-width: 100%;
+    margin-top: 0; /* بدون هیچ مارجین منفی */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text .hi {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hero-text .role {
+    font-size: 24px;
+    margin-top: 4px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 12px;
+    padding: 0 10px;
   }
 
   .btn {
-    padding: 12px 32px;
+    padding: 12px 34px;
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 18px;
   }
 
   .skills-wrapper {
@@ -913,25 +922,26 @@ footer.enhanced-footer {
   }
 
   .hero {
-    padding: 80px 16px 25px;
-    gap: 8px;
-  }
-
-  .hero-text {
-    margin-top: -25px;
-  }
-
-  .hero-text .hi {
-    font-size: 28px;
-  }
-
-  .hero-text .role {
-    font-size: 22px;
+    padding: 75px 16px 20px;
+    gap: 10px;
   }
 
   .blob-wrap {
-    width: 190px;
-    height: 190px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .hero-text .hi {
+    font-size: 26px;
+  }
+
+  .hero-text .role {
+    font-size: 20px;
+  }
+
+  .hero-text p {
+    font-size: 13px;
+    margin-top: 8px;
   }
 
   .about-header h1 {
