@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Amir Rezaei</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS مشترک پروژه -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JavaScript مشترک پروژه -->
+  <script src="script.js" defer></script>
+
+  <style>
+    /* استایل‌های اختصاصی صفحه وبلاگ برای هماهنگی کامل با قالب */
+    .blog-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 20px 60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .blog-header {
+      margin-bottom: 40px;
+    }
+
+    .blog-header h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .blog-header h1 span {
+      background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .blog-header p {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .blog-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .post-card {
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .post-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(96, 165, 250, 0.4);
+      box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #60a5fa;
+      font-family: 'Fira Code', monospace;
+      margin-bottom: 10px;
+    }
+
+    .post-meta span.date {
+      color: #94a3b8;
+    }
+
+    .post-title-link {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: inherit;
+    }
+
+    .post-title-link svg {
+      transition: transform 0.2s ease;
+      opacity: 0.6;
+    }
+
+    .post-card:hover .post-title-link svg {
+      transform: translateX(4px);
+      opacity: 1;
+      stroke: #60a5fa;
+    }
+
+    .post-summary {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 12px;
+      background: rgba(59, 130, 246, 0.1);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 9999px;
+      padding: 3px 10px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* واکنش‌گرایی موبایل (Mobile Responsive) */
+    @media (max-width: 768px) {
+      .blog-container {
+        padding: 100px 16px 40px;
+      }
+      .blog-header h1 {
+        font-size: 1.8rem;
+      }
+      .blog-header p {
+        font-size: 0.95rem;
+      }
+      .post-title-link {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body data-page="toggle-thumb">
+          <div class="crater crater-1"></div>
+          <div class="crater crater-2"></div>
+          <div class="crater crater-3"></div>
+        </div>
+        <</div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- NAVIGATION دقیقا مطابق ساختار پروژه -->
+  <nav>
+    <div class="theme-toggle-container">
+      <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle theme">
+      <label for="theme-toggle" class="theme-toggle-label">
+        <div class="toggle-thumb">
+          <div class="crater crater-1"></div>
+          <div class="crater crater-2"></div>
+          <div class="crater crater-3"></div>
+        </div>
+        <div class="clouds cloud-bg"></div>
+        <div class="clouds cloud-fg"></div>
+        <div class="star star-1">✦</div>
+        <div class="star star-2">★</div>
+        <div class="star star-3">✦</div>
+        <div class="star star-4">★</div>
+        <div class="crater-aura crater-aura-1"></div>
+        <div class="crater-aura crater-aura-2"></div>
+      </label>
+    </div>
+
+    <div class="logo-box">
+      <a href="index.html" class="logo">Personal Page</a>
+    </div>
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN BLOG CONTENT -->
+  <main class="blog-container">
+    <div class="blog-header">
+      <h1>Engineering <span>Logs &amp; Insights</span></h1>
+      <p>Technical writings, mathematical algorithms, Linux internal deep-dives, and automated workflows.</p>
+    </div>
+
+    <div class="blog-grid">
+
+      <!-- پست نمونه اول -->
+      <a href="posts/first-post.html" class="glass-card post-card">
+        <div class="post-meta">
+          <span class="date">Sep 02, 2026</span>
+          <span>•</span>
+          <span>5 min read</span>
+        </div>
+        <div class="post-title-link">
+          <span>Writing High-Throughput Automation Scripts in Python</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="post-summary">
+          How to leverage AsyncIO, multiprocessing, and low-level Linux signals to automate resource-intensive workflows reliably without memory leaks.
+        </p>
+        <div class="post-tags">
+          <span class="tag">#Python</span>
+          <span class="tag">#AsyncIO</span>
+          <span class="tag">#Automation</span>
+        </div>
+      </a>
+
+      <!-- پست نمونه دوم -->
+      <a href="#" class="glass-card post-card">
+        <div class="post-meta">
+          <span class="date">Aug 20, 2026</span>
+          <span>•</span>
+          <span>8 min read</span>
+        </div>
+        <div class="post-title-link">
+          <span>First Principles: How Operating Systems Handle Context Switching</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+        <p class="post-summary">
+          Dissecting kernel behavior, CPU registers, and stack pointers when an interrupt triggers a process switch inside Unix-like kernels.
+        </p>
+        <div class="post-tags">
+          <span class="tag">#Linux</span>
+          <span class="tag">#C</span>
+          <span class="tag">#Systems</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER دقیقا مطابق فایل About -->
+  <footer class="enhanced-footer">
+    <div class="footer-contact-items">
+      <a href="mailto:Work.251.1021@gmail.com" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>Work.251.1021@gmail.com</span>
+      </a>
+      <a href="tel:+989186230799" class="contact-item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+98 918 623 0799</span>
+      </a>
+      <div class="contact-item" style="cursor: default;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Available: Sat – Thu (09:00 - 18:00)</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <!-- GitHub -->
+      <a href="https://github.com/work-251-1021" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Available: Sat – Thu (09:00 - 18:00)</span>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <!-- GitHub -->
+      <a href="https://github.com/work-251-1021" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-.63-5.37-12-12-12z"/></svg>
+      </a>
+      <!-- X / Twitter -->
+      <a href="https://x.com/work_251_1021?s=11" target="_blank" rel="noopener" aria-label="X">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <!-- Telegram -->
+      <a href="https://t.me/Work_251_1021" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.832.942z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
